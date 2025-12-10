@@ -12,7 +12,7 @@ public class Pets
     {
         this.name = name;
         age = 0;
-        hunger = 0;
+        hunger = 5;
         happiness = 0;
     }
 
@@ -65,15 +65,15 @@ public class Pets
 
                 if (input == "1")
                 {
-                    feed();
+                    pet.feed();
                 }
                 else if (input == "2")
                 {
-                    play();
+                    pet.play();
                 }
                 else if (input == "3")
                 {
-                    piss();
+                    pet.piss();
                 }
                 else
                 {
@@ -91,18 +91,28 @@ public class Pets
         }
     }
 
-    private static void piss()
+    private void piss()
     {
         throw new NotImplementedException();
     }
 
-    private static void play()
+    private void play()
     {
         throw new NotImplementedException();
     }
 
-    private static void feed()
+    private void feed()
     {
-        throw new NotImplementedException();
+        if (hunger <= 0)
+        {
+            Console.WriteLine("ikke sulten");
+        }
+        if (hunger >= 1) 
+        { 
+            Console.WriteLine($"{name} spiser");
+            hunger = 0;
+            Console.WriteLine($"{hunger}");
+        }
+
     }
 }
