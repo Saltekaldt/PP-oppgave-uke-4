@@ -1,4 +1,6 @@
-﻿namespace PP_oppgave_uke_4;
+﻿using System.Data;
+
+namespace PP_oppgave_uke_4;
 
 public class Pets
 {
@@ -6,7 +8,7 @@ public class Pets
     private int age = 0;
     private int hunger = 0;
     private int happiness = 0;
-
+    private int natureCalls = 0;
 
     public Pets(string name)
     {
@@ -14,6 +16,7 @@ public class Pets
         age = 0;
         hunger = 5;
         happiness = 0;
+        natureCalls = 0;
     }
 
 
@@ -93,12 +96,32 @@ public class Pets
 
     private void piss()
     {
-        throw new NotImplementedException();
+        if (natureCalls <= 0)
+        {
+            Console.WriteLine("Må ikke på do");
+        }
+        if (natureCalls >= 1)
+        {
+            Console.WriteLine($"{name} Går på do");
+            natureCalls -= 5;
+            happiness += 5;
+            printInfo();
+        }
     }
 
     private void play()
     {
-        throw new NotImplementedException();
+        if (happiness <= 0)
+        {
+            Console.WriteLine("Orker ikke å leke");
+        }
+        if (happiness >= 1)
+        {
+            Console.WriteLine($"{name} leker");
+            happiness -= 5;
+            hunger += 5;
+            printInfo();
+        }
     }
 
     private void feed()
@@ -109,10 +132,19 @@ public class Pets
         }
         if (hunger >= 1) 
         { 
+            Console.Clear();
             Console.WriteLine($"{name} spiser");
-            hunger = 0;
-            Console.WriteLine($"{hunger}");
+            hunger -= 5;
+            natureCalls += 5;
+            printInfo();
+
         }
 
+    }
+    private void printInfo()
+    {
+        Console.WriteLine($"Sult {hunger} ut av 10");
+        Console.WriteLine($"Tissatrengt {natureCalls} ut av 10");
+        Console.WriteLine($"Kjeder seg {happiness} ut av 10");
     }
 }
